@@ -72,27 +72,28 @@ with center_content:
     st.write("<br>", unsafe_allow_html=True)
 
     # Action Buttons
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Save Student"):
-    if name and roll:
-        try:
-            # 1. This calls the function from your updated db.py
-            d.add(name, roll, dept, year)
-            
-            # 2. Show the success message
-            st.success(f"✅ Student {name} added successfully")
-            
-            # 3. CRITICAL: This clears the inputs and the old error state
-            st.rerun() 
-            
-        except Exception as e:
-            # This only triggers if the 'try' block fails (e.g., duplicate roll number)
-            st.error("⚠️ Error: This Roll Number already exists.")
-    else:
-        st.warning("Please fill in all fields.")
-    with col2:
-        if st.button("Back"):
+    # # Action Buttons
+coll, col2 = st.columns(2)
 
-            st.switch_page("pages/Exfunctionality.py")
+with coll:
+    if st.button("Save Student"):
+        if name and roll:
+            try:
+                # This must be indented exactly 16 spaces from the left
+                d.add(name, roll, dept, year)
+                st.success(f"✅ Student {name} added successfully")
+                st.rerun()
+            except Exception:
+                # This must be aligned with the 'try'
+                st.error("⚠️ Error: This Roll Number already exists.")
+        else:
+            # This must be aligned with the inner 'if'
+            st.warning("Please fill in the required fields.")
+
+with col2:
+    if st.button("Back"):
+        st.switch_page("pages/Exfunctionality.py")
+
+            
+
 
