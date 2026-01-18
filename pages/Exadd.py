@@ -85,12 +85,12 @@ with center_content:
                 try:
                     d.add(name, roll, dept, year)
                     st.success(f"✅ Student {name} added successfully")
+                    
+                    st.session_state.name = ""
+                    st.session_state.age = ""
                     st.rerun()
-                except Exception:
-                    st.error("⚠️ Error: This Roll Number already exists.")
-            else:
-                st.warning("Please fill in the required fields.")
 
     with col2:
         if st.button("Back"):
             st.switch_page("pages/Exfunctionality.py")
+
