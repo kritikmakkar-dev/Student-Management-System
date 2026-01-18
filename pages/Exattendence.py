@@ -87,7 +87,7 @@ with center_content:
         status = st.radio("Status", ["Present", "Absent"], horizontal=True)
         st.write("<br>", unsafe_allow_html=True)
         if st.button("Save Attendance"):
-            d.add_attendance(student, status, att_date)
+            d.add_attendance(student[1], status, att_date)
             st.success(f"Attendance for {student[0]} saved!")
 
     st.write("<br>", unsafe_allow_html=True)
@@ -111,4 +111,5 @@ with center_content:
     col_back, _ = st.columns([1, 3])
     with col_back:
         if st.button("Back"):
+
             st.switch_page("pages/Exfunctionality.py")
