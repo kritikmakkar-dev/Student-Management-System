@@ -59,41 +59,38 @@ st.markdown("""
 # 3. Structural Layout (Matching the Functionality Page)
 left_margin, center_content, right_margin = st.columns([1, 4, 1])
 
+# 3. Structural Layout (Matching the Functionality Page)
+# This creates three columns: [1 (empty), 4 (content), 1 (empty)]
+left_margin, center_content, right_margin = st.columns([1, 4, 1])
+
 with center_content:
     st.subheader("➕ Add Student")
     st.write("---")
-
-    # Form Fields
-    name = st.text_input("Name", placeholder="Enter full name")
-    roll = st.text_input("Roll No", placeholder="e.g. 101")
-    dept = st.text_input("Department", placeholder="e.g. Computer Science")
-    year = st.selectbox("Year", [1, 2, 3, 4])
     
+    # All inputs MUST be inside this 'with' block to stay centered
+    name = st.text_input("Name", placeholder="Enter full name")
+    roll = st.text_input("Roll No", placeholder="e.g., 101")
+    dept = st.text_input("Department", placeholder="e.g., Computer Science")
+    year = st.selectbox("Year", [1, 2, 3, 4])
+
+    # Adding a small spacer before buttons
     st.write("<br>", unsafe_allow_html=True)
 
-    # Action Buttons
-    # # Action Buttons
-coll, col2 = st.columns(2)
+    # Action Buttons (Also inside the center_content)
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        if st.button("Save Student"):
+            if name and roll:
+                try:
+                    d.add(name, roll, dept, year)
+                    st.success(f"✅ Student {name} added successfully")
+                    st.rerun()
+                except Exception:
+                    st.error("⚠️ Error: This Roll Number already exists.")
+            else:
+                st.warning("Please fill in the required fields.")
 
-with coll:
-    if st.button("Save Student"):
-        if name and roll:
-            try:
-                # This must be indented exactly 16 spaces from the left
-                d.add(name, roll, dept, year)
-                st.success(f"✅ Student {name} added successfully")
-                st.rerun()
-            except Exception:
-                # This must be aligned with the 'try'
-                st.error("⚠️ Error: This Roll Number already exists.")
-        else:
-            # This must be aligned with the inner 'if'
-            st.warning("Please fill in the required fields.")
-
-with col2:
-    if st.button("Back"):
-        st.switch_page("pages/Exfunctionality.py")
-
-            
-
-
+    with col2:
+        if st.button("Back"):
+            st.switch_page("pages/Exfunctionality.py")
