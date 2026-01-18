@@ -59,9 +59,7 @@ st.markdown("""
 # 3. Structural Layout (Matching the Functionality Page)
 left_margin, center_content, right_margin = st.columns([1, 4, 1])
 
-# 3. Structural Layout (Matching the Functionality Page)
-# This creates three columns: [1 (empty), 4 (content), 1 (empty)]
-left_margin, center_content, right_margin = st.columns([1, 4, 1])
+
 
 with center_content:
     st.subheader("➕ Add Student")
@@ -95,5 +93,6 @@ with center_content:
     with col2:
         if st.button("Back"):
             st.switch_page("pages/Exfunctionality.py")
+
 
 
