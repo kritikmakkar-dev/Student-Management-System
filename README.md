@@ -35,14 +35,15 @@ A professional, high-performance administrative dashboard designed for education
    ```bash
    git clone [https://github.com/kritikmakkar-dev/Student-Management-System.git](https://github.com/kritikmakkar-dev/Student-Management-System.git)
    cd Student-Management-System
-Install dependencies section:
-This tells the user which libraries they need to install before the app will work.
-
+2. Install dependencies:
 Bash
 pip install streamlit pandas
-Default credentials section:
-This is essential so the user knows how to get past your login screen.
 
-Markdown
-- **Username:** admin
-- **Password:** admin
+3. Run the application:
+
+Bash
+streamlit run app.py
+
+Default Credentials
+Username: admin
+Password: admin
