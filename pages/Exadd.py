@@ -87,10 +87,13 @@ with center_content:
                     st.success(f"✅ Student {name} added successfully")
                     
                     st.session_state.name = ""
-                    st.session_state.age = ""
+                    st.session_state.roll = ""
                     st.rerun()
+                except Exception as e:
+                    st.error(f"Error: {e}")
 
     with col2:
         if st.button("Back"):
             st.switch_page("pages/Exfunctionality.py")
+
 
