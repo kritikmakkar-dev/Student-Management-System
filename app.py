@@ -84,9 +84,11 @@ pwd = st.text_input("Password", type="password", placeholder="••••••
 st.write("") 
 
 if st.button("login"):
-    if user == "admin" and pwd == "admin":
+    admin_data = d.admin_login(user, pwd)
+    if admin_data:
         st.session_state.logged_in = True
         st.success("Access Granted. Redirecting...")
         st.switch_page("pages/Exfunctionality.py")
     else:
+
         st.error("Invalid Credentials. Please try again.")
