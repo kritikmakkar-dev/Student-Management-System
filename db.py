@@ -11,12 +11,12 @@ CREATE TABLE IF NOT EXISTS admin(
 conn.commit()
 c.execute(
     "INSERT INTO admin (U_Name, Pass) VALUES (?, ?)",
-    ("ad", "ad")
+    ("admin", "admin")
     )
 conn.commit()
 c.execute(
     "INSERT INTO admin (U_Name, Pass) VALUES (?, ?)",
-    ("ada", "ada")
+    ("admin1", "password")
     )
 conn.commit()
 c.execute("""
@@ -38,6 +38,15 @@ CREATE TABLE IF NOT EXISTS attendance (
 """)
 conn.commit()
 conn.close()
+
+def admin_login(U_Name, Pass):
+    conn = sqlite3.connect("students.db")
+    c = conn.cursor()
+    # This query checks if the username and password exist in the admin table
+    c.execute("SELECT * FROM admin WHERE U_Name=? AND Pass=?", (U_Name, Pass))
+    data = c.fetchone()
+    conn.close()
+    return data # Returns the user row if found, else Nonev
 
 def add(name, roll, dept, year):
     conn=sqlite3.connect("students.db")
@@ -107,5 +116,6 @@ def admin(U_Name,Pass):
     c.execute("""
     SELECT * FROM
 """)
+
 
 
