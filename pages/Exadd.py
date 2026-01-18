@@ -75,17 +75,24 @@ with center_content:
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Save Student"):
-            if name and roll: # Basic validation check
-                try:
-                    d.add(name, roll, dept, year)
-                    st.success(f"✅ Student {name} added successfully")
-                    st.rerun()
-                except:
-                    st.error("⚠️ Error: This Roll Number already exists.")
-            else:
-                st.warning("Please fill in the required fields.")
-
+    if name and roll:
+        try:
+            # 1. This calls the function from your updated db.py
+            d.add(name, roll, dept, year)
+            
+            # 2. Show the success message
+            st.success(f"✅ Student {name} added successfully")
+            
+            # 3. CRITICAL: This clears the inputs and the old error state
+            st.rerun() 
+            
+        except Exception as e:
+            # This only triggers if the 'try' block fails (e.g., duplicate roll number)
+            st.error("⚠️ Error: This Roll Number already exists.")
+    else:
+        st.warning("Please fill in all fields.")
     with col2:
         if st.button("Back"):
 
             st.switch_page("pages/Exfunctionality.py")
+
